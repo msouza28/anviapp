@@ -16,10 +16,12 @@ const Login: React.FC = () => {
 
   const fetchAndStoreUsuario = async (usuarioId: string) => {
     try {
-        const usuario = await getUsuarioById(Number(usuarioId));
-        storeUsuario(usuario);
+      const usuario = await getUsuarioById(Number(usuarioId));
+      storeUsuario(usuario);
+      return usuario;
     } catch (error) {
-        console.error("Erro ao obter usuário:", error);
+      console.error("Erro ao obter usuário:", error);
+      return null;
     }
   };
 
@@ -27,15 +29,23 @@ const Login: React.FC = () => {
   const { user } = useUser();
 
   useEffect(() => {
-    if (isLoggedIn || userId) {
-      navigate("/denunciar");
-    }
+    const checkLoginStatus = async () => {
+      const storedUsuario = getStoredUsuario();
+      if (isLoggedIn || userId) {
+        if (storedUsuario?.isAgentResolucao) {
+          navigate("/ocorrencias");
+        } else {
+          navigate("/denunciar");
+        }
+      }
+    };
+    checkLoginStatus();
   }, [isLoggedIn, userId, navigate]);
 
   useEffect(() => {
     const cadastrarUsuarioGoogle = async () => {
       if (isLoaded) {
-        if (user && userId ) {
+        if (user && userId) {
           if (!user.fullName || !user.emailAddresses[0].emailAddress) {
             console.error('Nome completo ou endereço de email não encontrados.');
             navigate("/login");
@@ -43,10 +53,10 @@ const Login: React.FC = () => {
           }
           try {
             const idUsuarioGoogle = await hasGoogleId(userId);
-            if(idUsuarioGoogle === 'False'){
+            if (idUsuarioGoogle === 'False') {
               const usuarioGoogle: UsuarioCadastro = {
                 idGoogle: userId,
-                nomeCompleto: user.fullName ?? 'noName', 
+                nomeCompleto: user.fullName ?? 'noName',
                 email: user.emailAddresses[0].emailAddress,
                 cpf: "",
                 cnpj: "",
@@ -64,7 +74,7 @@ const Login: React.FC = () => {
           } catch (error) {
             console.error("Erro ao cadastrar usuário do Google:", error);
           }
-        } 
+        }
       }
     };
 
@@ -78,21 +88,22 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (values: { email: string, senha: string }, { resetForm }: { resetForm: () => void }) => {
     try {
-
       const emailExists = await hasEmailAndIdGoogle(values.email);
       if (emailExists === true) {
         alert("Esse email já foi cadastrado como uma conta Google.");
         resetForm();
         return;
       }
-      
       const usuarioId = await authUsuario(values.email, values.senha);
-      fetchAndStoreUsuario(usuarioId);
+      const usuario = await fetchAndStoreUsuario(usuarioId);
+      if (!usuario) {
+        alert("Erro ao buscar informações do usuário.");
+        return;
+      }
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("usuarioId", usuarioId);
 
-      const usuario = getStoredUsuario();
-      if (usuario?.isAgentResolucao) {
+      if (usuario.isAgentResolucao) {
         navigate("/ocorrencias");
       } else {
         navigate("/denunciar");

@@ -26,7 +26,7 @@ return (
     </div>
 
     <div id="sobre" className="flex flex-col  gap-10 pt-20 px-4 sm:px-6 lg:px-20 lg:flex-row">
-      <div className="flex flex-col sm:mt-28 lg:w-1/2">
+      <div className="flex flex-col sm:mt-24 lg:w-1/2">
         <h2 className="text-3xl flex justify-center text-whiteCustom font-bold text-start pb-10 sm:text-4xl lg:text-5xl xl:text-6xl">
           Sobre o projeto
         </h2>

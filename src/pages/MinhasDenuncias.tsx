@@ -6,7 +6,7 @@ import { getPublicacoesByUserId } from "../service/PublicacaoService";
 import { PublicacaoResponse } from "../models/PublicacaoResponse";
 import { getStoredUsuario } from "../service/UsuarioService";
 import ImageModal from "../components/modal/ImageModal";
-
+import { FaSpinner } from "react-icons/fa";
 
 
 export default function MinhasDenuncias(){
@@ -29,16 +29,20 @@ useEffect(() => {
 }, [isLoggedIn, userId]);
 // 
 
+const [isLoading, setIsLoading] = useState(true);
 const [publicacoes, setPublicacoes] = useState<PublicacaoResponse[]>([]);
 const usuarioId = parseInt(localStorage.getItem('usuarioId') || '0');
 
 useEffect(() => {
   const fetchPublicacoes = async () => {
     try {
+      setIsLoading(true); // Inicia o loading
       const data = await getPublicacoesByUserId(usuarioId);
       setPublicacoes(data);
     } catch (error) {
       alert(error);
+    } finally {
+      setIsLoading(false); // Termina o loading
     }
   };
 
@@ -59,11 +63,15 @@ return (
     <Navbar fixed={false} />
     <div className="flex justify-center items-center mt-10 p-6">
       <div className="flex flex-col w-full max-w-2xl space-y-7">
-        {publicacoes.length === 0 ? (
+        {isLoading ? (
+          <div className="flex justify-center items-center">
+            <FaSpinner className="animate-spin text-whiteCustom text-4xl" />
+          </div>
+        ) : publicacoes.length === 0 ? (
           <div className="flex justify-center items-center text-whitePholder text-2xl">
-            <p >Você não realizou nenhuma denuncia. <Link
+            <p>Você não realizou nenhuma denuncia. <Link
               to="/denunciar"
-              className="text-whiteCustom self-start text-2xl hover:underline "
+              className="text-whiteCustom self-start text-2xl hover:underline"
             >
               Denuncie!
             </Link></p>
@@ -81,12 +89,12 @@ return (
               <p>{publication.comentario}</p>
               <div className="flex flex-wrap border border-whiteCustom rounded">
                 {publication.imagens?.map((imagem, index) => (
-                  <img 
-                  key={index} 
-                  src={imagem.caminhoImg} 
-                  alt="imagem da denuncia" 
-                  className="w-28 h-28 object-cover m-1 cursor-pointer" 
-                  onClick={() => handleImageClick(imagem.caminhoImg)} />
+                  <img
+                    key={index}
+                    src={imagem.caminhoImg}
+                    alt="imagem da denuncia"
+                    className="w-28 h-28 object-cover m-1 cursor-pointer"
+                    onClick={() => handleImageClick(imagem.caminhoImg)} />
                 ))}
               </div>
             </div>

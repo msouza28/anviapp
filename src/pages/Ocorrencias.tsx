@@ -7,6 +7,8 @@ import { PublicacaoResponse } from "../models/PublicacaoResponse";
 import { getStoredUsuario } from "../service/UsuarioService";
 import { MunicipioModel } from "../models/MunicipioModel";
 import { getAllMunicipios } from "../service/MunicipioService";
+import { FaSpinner } from "react-icons/fa";
+import ImageModal from "../components/modal/ImageModal";
 
 
 
@@ -28,6 +30,8 @@ useEffect(() => {
 }, [isLoggedIn, userId]);
 // 
 
+const [isModalOpen, setIsModalOpen] = useState(false);
+const [selectedImage, setSelectedImage] = useState<string | null>(null);
 // Controle do estado do select de cidades
 const [cidadeSelecionada, setCidadeSelecionada] = useState<number | null>(null); // Estado para armazenar a cidade selecionada
 const handleCidadeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -37,6 +41,7 @@ const handleCidadeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 
 // busca pelos municipios no backend
 const [cidades, setCidades] = useState<MunicipioModel[]>([]);
+const [isLoading, setIsLoading] = useState(true);
 
 useEffect(() => {
   const fetchMunicipios = async () => {
@@ -56,11 +61,14 @@ const [publicacoes, setPublicacoes] = useState<PublicacaoResponse[]>([]);
   const fetchPublicacoes = async () => {
     try {
       if (cidadeSelecionada !== null) {
+        setIsLoading(true);
         const data = await getPublicacoesByMunicipioId(cidadeSelecionada);
         setPublicacoes(data);
       }
     } catch (error) {
       alert(error);
+    } finally {
+      setIsLoading(false); // Termina o loading
     }
   };
 
@@ -78,7 +86,14 @@ const [publicacoes, setPublicacoes] = useState<PublicacaoResponse[]>([]);
       alert("Erro ao alterar status da publicação.");
     }
   };
-
+  const handleImageClick = (imageUrl: string) => {
+    setSelectedImage(imageUrl);
+    setIsModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedImage(null);
+  };
 return (
   <>
     <Navbar fixed={false} />
@@ -99,7 +114,11 @@ return (
         </select>
       </div>
       <div className="flex flex-col w-full max-w-2xl space-y-7">
-        {publicacoes.length === 0 ? (
+        {isLoading ? (
+          <div className="flex justify-center items-center">
+            <FaSpinner className="animate-spin text-whiteCustom text-4xl" />
+          </div>
+        ) : publicacoes.length === 0 ? (
           <div className="flex justify-center items-center text-whitePholder text-2xl">
             <p>
              Não há ocorrencias para essa cidade.
@@ -133,7 +152,8 @@ return (
                     key={index}
                     src={imagem.caminhoImg}
                     alt="imagem da denuncia"
-                    className="w-28 h-28 object-cover m-1"
+                    className="w-28 h-28 object-cover m-1 cursor-pointer"
+                    onClick={() => handleImageClick(imagem.caminhoImg)}
                   />
                 ))}
               </div>
@@ -150,6 +170,7 @@ return (
         )}
       </div>
     </div>
+    <ImageModal isOpen={isModalOpen} onClose={handleCloseModal} imageUrl={selectedImage || ''} />
   </>
 );
 }
