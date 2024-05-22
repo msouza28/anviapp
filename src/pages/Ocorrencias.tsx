@@ -96,7 +96,7 @@ const [publicacoes, setPublicacoes] = useState<PublicacaoResponse[]>([]);
   };
 return (
   <>
-    <Navbar fixed={false} />
+    <Navbar fixed={false} isCriadoresPage={false} />
     <div className="flex flex-col justify-center items-center mt-3 p-6 space-y-6">
       <div className="relative">
         <select
@@ -130,7 +130,7 @@ return (
               key={publication.id}
               className="flex flex-col text-whiteCustom border rounded border-whitePholder p-3 space-y-3"
             >
-              <div className="flex justify-between">
+              <div className="flex justify-between border-b-2 pb-1">
                 <span>Data: {publication.dataPubli}</span>
                 <span
                   className={`border rounded px-1 ${
@@ -157,6 +157,8 @@ return (
                   />
                 ))}
               </div>
+              <div className="flex justify-between">
+              <span className="">{publication.rua}</span>
               {publication.status === 1 && (
               <button type="button" 
               className="self-end py-1 px-3 border rounded text-whiteCustom text-base hover:underline hover:bg-green-700 " 
@@ -165,6 +167,7 @@ return (
                 Solucionar
               </button>
             )}
+            </div>
             </div>
           ))
         )}

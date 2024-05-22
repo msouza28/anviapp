@@ -98,7 +98,7 @@ export default function Publicacao() {
 
   return (
     <>
-      <Navbar fixed={false} />
+      <Navbar fixed={false} isCriadoresPage={false} />
       <div className="flex justify-center items-center mt-6 px-4 md:px-0">
         <Formik
           initialValues={{

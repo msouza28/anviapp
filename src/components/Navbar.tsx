@@ -10,8 +10,9 @@ import { HashLink } from "react-router-hash-link";
 
 interface NavBarProps {
   fixed: boolean;
+  isCriadoresPage: boolean;
 }
-const NavBar: React.FC<NavBarProps> = ({ fixed }) =>{
+const NavBar: React.FC<NavBarProps> = ({ fixed , isCriadoresPage}) =>{
  
   const navigate = useNavigate()
   const { userId } = useAuth()
@@ -31,7 +32,7 @@ const NavBar: React.FC<NavBarProps> = ({ fixed }) =>{
   };
 
   return (
-    <nav className={`${fixed ? 'fixed top-0 left-0 w-full  sm:max-w-1.5 md:max-w-full bg-bgCustom z-50 p-2' : 'bg-bgCustom p-2'}`}>
+    <nav className={`${fixed || isCriadoresPage ? 'fixed top-0 left-0 w-full  sm:max-w-1.5 md:max-w-full bg-bgCustom z-50 p-2' : 'bg-bgCustom p-2'}`}>
       <div className="max-w-9xl mx-4 mt-4 flex justify-between items-center">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           {fixed ? (
