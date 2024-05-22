@@ -12,7 +12,7 @@ const isHomePage = location.pathname === '/';
 
 return (
   <div className="w-full">
-    <NavBar fixed={isHomePage} />
+    <NavBar fixed={isHomePage} isCriadoresPage={false} />
     <div id="top" className="flex flex-col items-center justify-center h-screen max-w-7xl mx-auto pt-14 px-4 sm:px-6 lg:px-8">
       <h1 className="text-center text-whiteCustom mb-4 text-3xl sm:text-4xl sm:mb-6 md:mb-8 md:text-5xl lg:mb-10 lg:text-7xl">
         <strong className="mr-2">Simplificamos</strong> o seu{" "}

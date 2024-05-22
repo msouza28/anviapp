@@ -7,6 +7,8 @@ import { PublicacaoResponse } from "../models/PublicacaoResponse";
 import { getStoredUsuario } from "../service/UsuarioService";
 import ImageModal from "../components/modal/ImageModal";
 import { FaSpinner } from "react-icons/fa";
+import { MunicipioModel } from "../models/MunicipioModel";
+import { getAllMunicipios } from "../service/MunicipioService";
 
 
 export default function MinhasDenuncias(){
@@ -28,7 +30,7 @@ useEffect(() => {
   }
 }, [isLoggedIn, userId]);
 // 
-
+const [cidades, setCidades] = useState<MunicipioModel[]>([]);
 const [isLoading, setIsLoading] = useState(true);
 const [publicacoes, setPublicacoes] = useState<PublicacaoResponse[]>([]);
 const usuarioId = parseInt(localStorage.getItem('usuarioId') || '0');
@@ -49,6 +51,23 @@ useEffect(() => {
   fetchPublicacoes();
 }, [usuarioId]);
 
+useEffect(() => {
+  const fetchMunicipios = async () => {
+      try {
+          const municipios = await getAllMunicipios();
+          setCidades(municipios);
+      } catch (error) {
+          console.error('Erro ao buscar municípios:', error);
+      }
+  };
+  fetchMunicipios();
+}, []);
+
+const getMunicipioNome = (municipioId: number) => {
+  const municipio = cidades.find(cidade => cidade.id === municipioId);
+  return municipio ? municipio.nome : 'Desconhecido';
+};
+
 const handleImageClick = (imageUrl: string) => {
   setSelectedImage(imageUrl);
   setIsModalOpen(true);
@@ -60,7 +79,7 @@ const handleCloseModal = () => {
 };
 return (
   <>
-    <Navbar fixed={false} />
+    <Navbar fixed={false} isCriadoresPage={false} />
     <div className="flex justify-center items-center mt-10 p-6">
       <div className="flex flex-col w-full max-w-2xl space-y-7">
         {isLoading ? (
@@ -79,8 +98,9 @@ return (
         ) : (
           publicacoes.map((publication) => (
             <div key={publication.id} className="flex flex-col text-whiteCustom border rounded border-whitePholder p-3 space-y-3">
-              <div className="flex justify-between">
+              <div className="flex justify-between border-b-2 pb-1">
                 <span>Data: {publication.dataPubli}</span>
+                <span>{getMunicipioNome(publication.municipioId)} </span>
                 <span className={`border rounded px-1 ${publication.status === 1 ? 'bg-red-200 text-black' : 'bg-green-200 text-black'}`}>
                   {publication.status === 1 ? 'Pendente' : 'Resolvido'}
                 </span>
@@ -97,6 +117,7 @@ return (
                     onClick={() => handleImageClick(imagem.caminhoImg)} />
                 ))}
               </div>
+              <span className="">{publication.rua}</span>
             </div>
           ))
         )}

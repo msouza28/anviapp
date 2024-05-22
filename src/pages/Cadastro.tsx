@@ -61,7 +61,7 @@ export default function Cadastro(){
     };
     return (
       <>
-        <Navbar fixed={false} />
+        <Navbar fixed={false} isCriadoresPage={false} />
         <div className="flex justify-center items-center mt-20">
           <form
             className="flex flex-col w-11/12 text-base sm:max-w-2xl sm:text-base space-y-10 "
