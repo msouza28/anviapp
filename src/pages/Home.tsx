@@ -1,14 +1,15 @@
 import FAQ from "../components/FAQ";
 import NavBar from "../components/Navbar";
 import QuemSomos from "../components/QuemSomos";
-import Mapa from "../assets/images/mapa-metropole.png"
 import { Link, useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import MapaInterativo from "../components/MapaInterativo";
 
 export default function Home(){
 
 const location = useLocation();
 const isHomePage = location.pathname === '/';
+
 
 return (
   <div className="w-full">
@@ -45,11 +46,9 @@ return (
     </div>
 
     <div id="mapa" className="flex flex-col items-center lg:flex-row gap-10 justify-center h-auto mt-10 px-4 sm:px-6 lg:px-20">
-      <img
-        src={Mapa}
-        alt="Imagem"
-        className="w-full lg:w-3/5 h-auto mb-4 lg:mb-0 mx-auto"
-      />
+      <div className="w-full lg:w-3/5 h-auto mb-4 lg:mb-0 mx-auto">
+      <MapaInterativo/>
+      </div>
       <div className="flex flex-col text-left lg:w-2/5">
         <h2 className=" flex justify-center text-4xl text-whiteCustom font-bold pb-12 sm:text-5xl lg:text-6xl">
           Regiões
