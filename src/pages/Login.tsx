@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth, useUser, SignedOut, SignInButton } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
-import { authUsuario, cadastrarUsuario, getStoredUsuario, getUsuarioById, hasGoogleId, storeUsuario } from "../service/UsuarioService";
+import { authUsuario, cadastrarUsuario, getStoredUsuario, getUsuarioById, hasEmailAndIdGoogle, hasGoogleId, storeUsuario } from "../service/UsuarioService";
 import Navbar from "../components/Navbar";
 import ForgotPassModal from "../components/modal/ForgotPassModal";
 import { UsuarioCadastro } from "../models/UsuarioCadastro";
@@ -76,8 +76,16 @@ const Login: React.FC = () => {
     senha: Yup.string().min(5, 'Senha deve ter no mínimo 5 caracteres.').required('Senha é obrigatória.')
   });
 
-  const handleSubmit = async (values: { email: string, senha: string }) => {
+  const handleSubmit = async (values: { email: string, senha: string }, { resetForm }: { resetForm: () => void }) => {
     try {
+
+      const emailExists = await hasEmailAndIdGoogle(values.email);
+      if (emailExists === true) {
+        alert("Esse email já foi cadastrado como uma conta Google.");
+        resetForm();
+        return;
+      }
+      
       const usuarioId = await authUsuario(values.email, values.senha);
       fetchAndStoreUsuario(usuarioId);
       localStorage.setItem("isLoggedIn", "true");

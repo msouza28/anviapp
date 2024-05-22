@@ -79,6 +79,24 @@ export const hasGoogleId = async(idGoogle: string) => {
     }
 }
 
+export const hasEmailAndIdGoogle = async(email: string) => {
+    try{
+        const response = await fetch(apiUrl + 'usuario/hasEmailAndIdgoogle',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(email)
+        });
+        if (!response.ok) {
+            return false;
+        }
+        return true;
+    } catch (error) {
+        return error; // Propaga o erro para ser tratado pelo componente que chamou a função
+    }
+}
+
 export const getUsuarioById = async (id: number): Promise<UsuarioRequest> => {
     try {
         const response = await fetch(apiUrl + `usuario/${id}`, {
