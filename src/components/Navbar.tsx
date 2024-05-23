@@ -113,12 +113,19 @@ const NavBar: React.FC<NavBarProps> = ({ fixed , isCriadoresPage}) =>{
             {isLoggedIn && (
               <>
                 {usuario?.isAgentResolucao ? (
-                  <Link
+                  <>
+                  <HashLink
+                    to="/#mapa"
+                    className="px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transition-transform"
+                  >
+                    Mapa
+                  </HashLink><Link
                     to="/ocorrencias"
                     className="px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transition-transform"
                   >
-                    Ocorrências
-                  </Link>
+                      Ocorrências
+                    </Link>
+                    </>
                 ) : (
                   <>
                     <Link

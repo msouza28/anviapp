@@ -49,8 +49,8 @@ return (
       <CardSlider/>
     </div>
 
-    <div id="mapa" className="flex flex-col-reverse items-center lg:flex-row gap-10 justify-center h-auto mt-10 px-4 sm:px-6 lg:px-20">
-      <div className="w-full lg:w-3/5 h-auto mb-4 lg:mb-0 mx-auto">
+    <div id="mapa" className="flex flex-col-reverse items-center mt-32 sm:-mb-5 sm:-mt-8 lg:pt-28 xl:pt-16 lg:flex-row gap-10 justify-center h-auto  px-4 sm:px-6 lg:px-20">
+      <div className="w-full md:w-3/4 lg:w-3/5 h-auto mb-4   lg:mb-0 mx-auto">
       <MapaInterativo/>
       </div>
       <div className="flex flex-col text-left lg:w-2/5">
@@ -61,7 +61,7 @@ return (
           39 cidades da região metropolitana de São Paulo
           podem receber sua denúncia.
         </p>
-        <div className="flex itens-center justify-center">
+        <div className="flex itens-center justify-center sm:-mt-4">
           <Link to={"/login"}>
             <button className=" flex flex-col itens-center justify-center bg-whiteCustom hover:bg-whitePholder text-bgCustom text-center text-xl py-2 px-4 rounded-2xl border-2 font-semibold border-bgCustom">
               Denúncie na sua região
