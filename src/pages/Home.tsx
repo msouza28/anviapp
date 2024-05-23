@@ -19,28 +19,30 @@ return (
         <strong className="mr-2">Simplificamos</strong> o seu{" "}
         <strong>dever de cidadão</strong> em poucos cliques!
       </h1>
-      <HashLink to={"#sobre"}>
+      <HashLink smooth to={"#sobre"}>
         <div className="bg-bgCustom hover:bg-gray-700 text-white text-lg font-bold py-4 px-6 rounded border-2 border-white-600 mt-4 sm:mt-6 md:mt-8">
           <p>Sobre o projeto</p>
         </div>
       </HashLink>
     </div>
 
-    <div id="sobre" className="flex flex-col  gap-10 pt-20 px-4 sm:px-6 lg:flex-row lg:pt-0">
-      <div className="flex flex-col sm:mt-24 lg:mt-6">
-        <h2 className="text-3xl flex justify-center text-whiteCustom font-bold text-start pb-10 sm:text-4xl lg:pb-5 ">
+    <div id="sobre" className="flex flex-col pt-20 px-4 sm:px-6 lg:flex-row lg:pt-20">
+      <div className="flex flex-col sm:mt-24 lg:mt-4 xl:mt-32 ">
+        <h2  className="text-3xl flex justify-center text-whiteCustom font-bold text-start pb-5 sm:text-4xl lg:pb-5 ">
           Sobre o projeto
         </h2>
-        <p className=" text-lg text-whiteCustom mx-5 sm:mx-10 md:mx-20 lg:mx-5">
+        <div className=" text-lg text-whiteCustom mx-5 sm:mx-10 md:mx-20 lg:mx-5 space-y-3">
+        <p >
           AnVigilants é um projeto que visa o fornecimento de um canal de
           denúncias anônimas para que os cidadãos possam denunciar os crimes
           relacionados ao descarte inadequado de lixo.
-          <br />
-          <br />
+        </p>
+        <p>
           Com AnVigilants, simplificamos o burocrático processo de denúncia
           de descarte de lixo e disponibilizamos as ocorrências em um só
           lugar, onde as autoridades competentes podem atuar na solução do problema.
-        </p>
+          </p>
+          </div>
       </div>
       <CardSlider/>
     </div>

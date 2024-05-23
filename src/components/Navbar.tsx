@@ -67,6 +67,7 @@ const NavBar: React.FC<NavBarProps> = ({ fixed , isCriadoresPage}) =>{
 
                 {fixed ? (
                   <HashLink
+                    smooth
                     to="#sobre"
                     className="px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transition-transform"
                   >

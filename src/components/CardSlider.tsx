@@ -16,7 +16,7 @@ const CardSlider = () => {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto px-4 mt-1 mb-16 sm:px-6 sm:mt-9 lg:max-w-xl  ">
+    <div className="w-full max-w-2xl mx-auto px-4 mt-7 mb-16 sm:px-6 sm:mt-9 lg:max-w-xl xl:max-w-2xl ">
       <Slider {...settings} className="mx-auto max-w-7xl">
         <div className="flex flex-col items-center justify-center h-full text-center ">
           <img
