@@ -118,7 +118,7 @@ const Login: React.FC = () => {
   return (
     <header>
       <Navbar fixed={false} isCriadoresPage={false} />
-      <div className="flex justify-center items-center mt-20 sm:mt-32 px-4">
+      <div className="flex justify-center items-center mt-20 sm:mt-20 px-4">
         <div className="flex flex-col w-full max-w-lg sm:max-w-2xl space-y-6 sm:space-y-10">
           <SignedOut>
             <SignInButton>

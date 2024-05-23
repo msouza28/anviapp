@@ -4,6 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import MapaInterativo from "../components/MapaInterativo";
 import CardSlider from "../components/CardSlider";
+import Sumario from "../components/Sumario";
+import Footer from "../components/Footer";
 
 export default function Home(){
 
@@ -47,7 +49,7 @@ return (
       <CardSlider/>
     </div>
 
-    <div id="mapa" className="flex flex-col items-center lg:flex-row gap-10 justify-center h-auto mt-10 px-4 sm:px-6 lg:px-20">
+    <div id="mapa" className="flex flex-col items-center lg:flex-row gap-10 justify-center h-auto mt-10 px-4 sm:flex-col-reverse sm:px-6 lg:px-20">
       <div className="w-full lg:w-3/5 h-auto mb-4 lg:mb-0 mx-auto">
       <MapaInterativo/>
       </div>
@@ -68,7 +70,7 @@ return (
         </div>
       </div>
     </div>
-
+    <Sumario/>
     <div className="h-80  mt-32 px-4 sm:px-6 lg:px-8">
       <div className="bg-whiteCustom/5 flex flex-col items-center justify-center py-10 mx-4 rounded-2xl sm:mx-10 ">
         <h2 className="text-xl  text-whiteCustom mb-4 font-bold text-center sm:text-2xl sm:mb-6 md:text-4xl md:mb-8 lg:text-5xl lg:mb-10 ">
@@ -91,10 +93,7 @@ return (
       </p>
       <FAQ />
     </div>
-    <div className="w-full flex items-center justify-center text-white text-sm  text-center py-4 bg-bgCustom">
-      AnVigilants © 2024 by Isaac Santos, Matheus Emiliano, Rafael Budoya,
-      Vinicius Piovesan Attribution 4.0 International
-    </div>
+    <Footer />
   </div>
 );
 }

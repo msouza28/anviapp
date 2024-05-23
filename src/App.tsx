@@ -7,6 +7,8 @@ import MinhasDenuncias from "./pages/MinhasDenuncias";
 import Criadores from "./pages/Criadores";
 import Ocorrencias from "./pages/Ocorrencias";
 import { useEffect } from "react";
+import { useClerk } from "@clerk/clerk-react";
+import Footer from "./components/Footer";
 
 
 const router = createBrowserRouter([
@@ -41,20 +43,24 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
+
+  const { signOut } = useClerk();
+
   useEffect(() => {
     
-    function clearLocalStorage() {
-      localStorage.clear(); 
+    function handleUnload() {
+      localStorage.clear();
+      signOut(); // Chama o signOut do Clerk ao fechar ou recarregar a página
     }
-
     // Adiciona o evento para limpar o localStorage quando a página é fechada ou recarregada
-    window.addEventListener('beforeunload', clearLocalStorage);
+    window.addEventListener('beforeunload', handleUnload);
 
     // Remove o evento quando o componente é desmontado
     return () => {
-      window.removeEventListener('beforeunload', clearLocalStorage);
+      window.removeEventListener('beforeunload', handleUnload);
     };
-  }, []);
+  }, [signOut]);
+
   return (
     <div className="bg-bgCustom min-h-screen">
      <RouterProvider router={router}></RouterProvider>
