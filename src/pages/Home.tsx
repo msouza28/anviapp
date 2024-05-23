@@ -1,14 +1,15 @@
 import FAQ from "../components/FAQ";
 import NavBar from "../components/Navbar";
-import QuemSomos from "../components/QuemSomos";
-import Mapa from "../assets/images/mapa-metropole.png"
 import { Link, useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import MapaInterativo from "../components/MapaInterativo";
+import CardSlider from "../components/CardSlider";
 
 export default function Home(){
 
 const location = useLocation();
 const isHomePage = location.pathname === '/';
+
 
 return (
   <div className="w-full">
@@ -25,12 +26,12 @@ return (
       </HashLink>
     </div>
 
-    <div id="sobre" className="flex flex-col  gap-10 pt-20 px-4 sm:px-6 lg:px-20 lg:flex-row">
-      <div className="flex flex-col sm:mt-24 lg:w-1/2">
-        <h2 className="text-3xl flex justify-center text-whiteCustom font-bold text-start pb-10 sm:text-4xl lg:text-5xl xl:text-6xl">
+    <div id="sobre" className="flex flex-col  gap-10 pt-20 px-4 sm:px-6 lg:flex-row lg:pt-0">
+      <div className="flex flex-col sm:mt-24 lg:mt-6">
+        <h2 className="text-3xl flex justify-center text-whiteCustom font-bold text-start pb-10 sm:text-4xl lg:pb-5 ">
           Sobre o projeto
         </h2>
-        <p className=" text-lg text-whiteCustom mx-5 sm:mx-10 md:m-0">
+        <p className=" text-lg text-whiteCustom mx-5 sm:mx-10 md:mx-20 lg:mx-5">
           AnVigilants é um projeto que visa o fornecimento de um canal de
           denúncias anônimas para que os cidadãos possam denunciar os crimes
           relacionados ao descarte inadequado de lixo.
@@ -41,15 +42,13 @@ return (
           lugar, onde as autoridades competentes podem atuar na solução do problema.
         </p>
       </div>
-      <QuemSomos/>
+      <CardSlider/>
     </div>
 
     <div id="mapa" className="flex flex-col items-center lg:flex-row gap-10 justify-center h-auto mt-10 px-4 sm:px-6 lg:px-20">
-      <img
-        src={Mapa}
-        alt="Imagem"
-        className="w-full lg:w-3/5 h-auto mb-4 lg:mb-0 mx-auto"
-      />
+      <div className="w-full lg:w-3/5 h-auto mb-4 lg:mb-0 mx-auto">
+      <MapaInterativo/>
+      </div>
       <div className="flex flex-col text-left lg:w-2/5">
         <h2 className=" flex justify-center text-4xl text-whiteCustom font-bold pb-12 sm:text-5xl lg:text-6xl">
           Regiões

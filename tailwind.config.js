@@ -16,6 +16,7 @@ export default {
       },
       screens: {
         'se': '300px',
+        'ip:':'390px',
         'xr': '431px',
       },
     },

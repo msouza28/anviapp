@@ -31,10 +31,14 @@ const NavBar: React.FC<NavBarProps> = ({ fixed , isCriadoresPage}) =>{
     setShowLinks(!showLinks);
   };
 
+  const navBarClass = isLoggedIn || userId
+    ? "flex items-center justify-center mr-14 md:mr-15 lg:mr-32 se:mr-3 se:-ml-4 overflow-hidden sm:overflow-visible"
+    : "flex items-center justify-center mr-14 se:mr-3 se:-ml-4 overflow-hidden sm:overflow-visible";
+
   return (
-    <nav className={`${fixed || isCriadoresPage ? 'fixed top-0 left-0 w-full  sm:max-w-1.5 md:max-w-full bg-bgCustom z-50 p-2' : 'bg-bgCustom p-2'}`}>
-      <div className="max-w-9xl mx-4 mt-4 flex justify-between items-center">
-        <div className="flex items-center flex-shrink-0 text-white mr-6">
+    <nav className={`${fixed || isCriadoresPage ? 'fixed top-0 left-0 w-full sm:max-w-full bg-bgCustom z-50 p-2' : 'bg-bgCustom p-2'}`}>
+      <div className="max-w-9xl mx-4 mt-4 flex  items-center se:mx-0">
+        <div className="flex items-center flex-shrink-0 text-white ">
           {fixed ? (
             <HashLink to="#top">
               <img src={anviLogo} alt="Logo" className="h-10 " />
@@ -46,23 +50,17 @@ const NavBar: React.FC<NavBarProps> = ({ fixed , isCriadoresPage}) =>{
           )}
         </div>
 
-        <div className="flex-grow text-center">
+        <div className="flex-grow text-center ">
           <div
-            className={`flex items-center justify-center se:justify-start xr:justify-center overflow-hidden sm:justify-center sm:space-x-4  ${
-              showLinks ? "max-w-full" : "max-w-0"
+            className={`${navBarClass} ${
+              showLinks ? "max-w-full" : "max-w-0 sm:max-w-full"
             } transition-max-width duration-500 ease-in-out`}
           >
             {!isLoggedIn && !userId && (
               <>
                 <Link
                   to="/login"
-                  className={`px-2 md:px-3 py-2 rounded-md text-sm font-normal  text-white sm:text-base sm:font-medium hover:bg-gray-700 transform transition-transform ${
-                    showLinks ? "translate-x-0" : "-translate-x-full"
-                  }`}
-                  style={{
-                    transitionDuration: "0.5s",
-                    transitionDelay: `${showLinks ? "0s" : "1s"}`,
-                  }}
+                  className="px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transition-transform"
                 >
                   Login
                 </Link>
@@ -70,26 +68,14 @@ const NavBar: React.FC<NavBarProps> = ({ fixed , isCriadoresPage}) =>{
                 {fixed ? (
                   <HashLink
                     to="#sobre"
-                    className={`px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transform transition-transform ${
-                      showLinks ? "translate-x-0" : "-translate-x-full"
-                    }`}
-                    style={{
-                      transitionDuration: "0.5s",
-                      transitionDelay: `${showLinks ? "0s" : "2s"}`,
-                    }}
+                    className="px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transition-transform"
                   >
                     Sobre
                   </HashLink>
                 ) : (
                   <Link
                     to="/"
-                    className={`px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transform transition-transform ${
-                      showLinks ? "translate-x-0" : "-translate-x-full"
-                    }`}
-                    style={{
-                      transitionDuration: "0.5s",
-                      transitionDelay: `${showLinks ? "0s" : "2s"}`,
-                    }}
+                    className="px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transition-transform"
                   >
                     Homepage
                   </Link>
@@ -97,13 +83,7 @@ const NavBar: React.FC<NavBarProps> = ({ fixed , isCriadoresPage}) =>{
 
                 <HashLink
                   to="/criadores#top"
-                  className={`px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transform transition-transform ${
-                    showLinks ? "translate-x-0" : "-translate-x-full"
-                  }`}
-                  style={{
-                    transitionDuration: "0.5s",
-                    transitionDelay: `${showLinks ? "0s" : "3s"}`,
-                  }}
+                  className="px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transition-transform"
                 >
                   Criadores
                 </HashLink>
@@ -114,26 +94,14 @@ const NavBar: React.FC<NavBarProps> = ({ fixed , isCriadoresPage}) =>{
               <>
                 <Link
                   to="/minhasDenuncias"
-                  className={`px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transform transition-transform ${
-                    showLinks ? "translate-x-0" : "-translate-x-full"
-                  }`}
-                  style={{
-                    transitionDuration: "0.5s",
-                    transitionDelay: `${showLinks ? "0s" : "1s"}`,
-                  }}
+                  className="px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transition-transform"
                 >
-                  Denuncias
+                  Minhas Denuncias
                 </Link>
 
                 <Link
                   to="/denunciar"
-                  className={`px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transform transition-transform ${
-                    showLinks ? "translate-x-0" : "-translate-x-full"
-                  }`}
-                  style={{
-                    transitionDuration: "0.5s",
-                    transitionDelay: `${showLinks ? "0s" : "1s"}`,
-                  }}
+                  className="px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transition-transform"
                 >
                   Denunciar
                 </Link>
@@ -144,36 +112,23 @@ const NavBar: React.FC<NavBarProps> = ({ fixed , isCriadoresPage}) =>{
             {isLoggedIn && (
               <>
                 {usuario?.isAgentResolucao ? (
-                  <>
-                    <Link
-                      to="/ocorrencias"
-                      className={`px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transform transition-transform ${
-                        showLinks ? "translate-x-0" : "-translate-x-full"
-                      }`}
-                      style={{transitionDuration: "0.5s",transitionDelay: `${showLinks ? "0s" : "1s"}`, }}
-                    >
-                      Ocorrências
-                    </Link>
-                  </>
+                  <Link
+                    to="/ocorrencias"
+                    className="px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transition-transform"
+                  >
+                    Ocorrências
+                  </Link>
                 ) : (
                   <>
                     <Link
                       to="/minhasDenuncias"
-                      className={`px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transform transition-transform ${
-                        showLinks ? "translate-x-0" : "-translate-x-full"
-                      }`}
-                      style={{transitionDuration: "0.5s",transitionDelay: `${showLinks ? "0s" : "1s"}`,
-                      }}
+                      className="px-2  py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transition-transform"
                     >
-                      Denuncias
+                      Minhas Denuncias
                     </Link>
                     <Link
                       to="/denunciar"
-                      className={`px-2 md:px-3 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transform transition-transform ${
-                        showLinks ? "translate-x-0" : "-translate-x-full"
-                      }`}
-                      style={{transitionDuration: "0.5s",transitionDelay: `${showLinks ? "0s" : "1s"}`,
-                      }}
+                      className="px-2 py-2 rounded-md text-sm font-normal text-white sm:text-base sm:font-medium hover:bg-gray-700 transition-transform"
                     >
                       Denunciar
                     </Link>
@@ -187,17 +142,16 @@ const NavBar: React.FC<NavBarProps> = ({ fixed , isCriadoresPage}) =>{
           </div>
         </div>
 
-        <div className="flex items-center">
+        <div className="flex items-center sm:hidden">
           <div
             className="text-whiteCustom focus:outline-none cursor-pointer"
             onClick={toggleLinks}
-
-            >
-              <FaBars style={{ fontSize: "24px" }} />
-            </div>
+          >
+            <FaBars style={{ fontSize: "24px" }} />
           </div>
         </div>
-      </nav>
-    );
-}
+      </div>
+    </nav>
+  );
+};
 export default NavBar;

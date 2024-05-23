@@ -69,3 +69,18 @@ export const alterarStatus = async (publicacaoId: number, status: number) => {
         throw error;
     }
 }
+
+export const getCountByMunicipioId = async (municipioId: number): Promise<number> => {
+    try {
+        const response = await fetch(`${apiUrl}publicacao/count/municipio/${municipioId}`);
+        if (!response.ok) {
+            const errorResponse = await response.text();
+            throw new Error(errorResponse || 'Erro ao buscar count de publicações por cidade');
+        }
+        const count: number = await response.json();
+        return count;
+    } catch (error) {
+        console.error('Erro no fetching de count publicacao by munipioId:', error);
+        throw error;
+    }
+};

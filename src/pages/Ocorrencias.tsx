@@ -34,6 +34,8 @@ const [isModalOpen, setIsModalOpen] = useState(false);
 const [selectedImage, setSelectedImage] = useState<string | null>(null);
 // Controle do estado do select de cidades
 const [cidadeSelecionada, setCidadeSelecionada] = useState<number | null>(null); // Estado para armazenar a cidade selecionada
+
+
 const handleCidadeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
   const municipioId = event.target.value ? parseInt(event.target.value) : null;
   setCidadeSelecionada(municipioId);
