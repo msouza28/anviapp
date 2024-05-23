@@ -8,7 +8,6 @@ import Criadores from "./pages/Criadores";
 import Ocorrencias from "./pages/Ocorrencias";
 import { useEffect } from "react";
 import { useClerk } from "@clerk/clerk-react";
-import Footer from "./components/Footer";
 
 
 const router = createBrowserRouter([
