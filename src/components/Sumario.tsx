@@ -8,13 +8,13 @@ export default function Sumario() {
           <span className="text-whiteCustom text-sm">Nenhuma denúncia</span>
 
           <span className={`h-3 w-3 rounded-full bg-yellow-300`}></span>
-          <span className="text-whiteCustom text-sm">Entre 1 a 3 denúncias</span>
+          <span className="text-whiteCustom text-sm">Entre 1 a 9 denúncias</span>
 
           <span className={`h-3 w-3 rounded-full bg-orange-600`}></span>
-          <span className="text-whiteCustom text-sm">Entre 4 a 5 denúncias</span>
+          <span className="text-whiteCustom text-sm">Entre 10 a 19 denúncias</span>
 
           <span className={`h-3 w-3 rounded-full bg-red-600`}></span>
-          <span className="text-whiteCustom text-sm">Acima de 5 denúncias</span>
+          <span className="text-whiteCustom text-sm">Acima de 20 denúncias</span>
           </div>
         </div>
       );

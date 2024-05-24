@@ -215,12 +215,12 @@ const MapaInterativo = () => {
               let strokeColor = 'white'; // Cor padrão do traçado
               
               // Lógica para definir a cor do traçado com base em municipio.count
-              if (municipio.count > 5) {
-                strokeColor = 'red'; // Cor vermelha se municipio.count for maior que 5
-              } else if (municipio.count >= 3) {
-                strokeColor = 'orange'; // Cor laranja se municipio.count for maior ou igual a 3
+              if (municipio.count > 20) {
+                strokeColor = 'red'; 
+              } else if (municipio.count >= 10) {
+                strokeColor = 'orange'; 
               } else if (municipio.count >= 1) {
-                strokeColor = 'yellow'; // Cor amarela se municipio.count for maior ou igual a 1
+                strokeColor = 'yellow'; 
               }
               
               return (
@@ -228,7 +228,7 @@ const MapaInterativo = () => {
                   key={municipio.id}
                   d={municipio.path}
                   stroke={strokeColor}
-                  strokeWidth={municipio.count > 0 ? 3 : 0.5} // Ajuste a largura do traçado conforme necessário
+                  strokeWidth={municipio.count >= 1 ? 3 : 0.5} // Ajuste a largura do traçado conforme necessário
                 />
               );
               
