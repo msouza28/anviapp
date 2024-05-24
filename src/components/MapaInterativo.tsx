@@ -188,7 +188,7 @@ const MapaInterativo = () => {
           );
   
           setMunicipios(municipiosWithData);
-          setIsLoading(false);
+          setIsLoading(true);
         } catch (error) {
           console.error('Erro ao buscar dados dos municípios:', error);
         }
@@ -202,7 +202,7 @@ const MapaInterativo = () => {
     return (
       <div>
         {isLoading ? (
-          <FaSpinner className="pl-50 animate-spin text-whiteCustom text-4xl" />
+          <FaSpinner className=" ml-10 sm:ml-20 animate-spin text-whiteCustom text-4xl w-3/4" />
         ) : (
           <svg
             width="100%"

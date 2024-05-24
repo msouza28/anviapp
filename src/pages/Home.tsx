@@ -49,7 +49,7 @@ return (
       <CardSlider/>
     </div>
 
-    <div id="mapa" className="flex flex-col-reverse items-center mt-32 sm:-mb-5 sm:-mt-8 lg:pt-28 xl:pt-16 lg:flex-row gap-10 justify-center h-auto  px-4 sm:px-6 lg:px-20">
+    <div id="mapa" className="flex flex-col-reverse items-center mt-32 sm:-mb-5 sm:-mt-8 lg:pt-28 xl:pt-16 lg:flex-row gap-10 justify-center h-auto  px-4 pb-10 se:pb-0 sm:pb-10 lg:pb-10 xl:pb-10 sm:px-6  lg:px-20">
       <div className="w-full md:w-3/4 lg:w-3/5 h-auto mb-4   lg:mb-0 mx-auto">
       <MapaInterativo/>
       </div>
