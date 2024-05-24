@@ -188,7 +188,7 @@ const MapaInterativo = () => {
           );
   
           setMunicipios(municipiosWithData);
-          setIsLoading(true);
+          setIsLoading(false);
         } catch (error) {
           console.error('Erro ao buscar dados dos municípios:', error);
         }
