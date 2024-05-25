@@ -64,7 +64,7 @@ return (
         <div className="flex itens-center justify-center sm:-mt-4">
           <Link to={"/login"}>
             <button className=" flex flex-col itens-center justify-center bg-whiteCustom hover:bg-whitePholder text-bgCustom text-center text-xl py-2 px-4 rounded-2xl border-2 font-semibold border-bgCustom">
-              Denúncie na sua região
+              Denuncie na sua região
             </button>
           </Link>
         </div>
